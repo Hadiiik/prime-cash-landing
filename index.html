@@ -207,10 +207,22 @@
             margin-top: 32px;
         }
 
-        .stat-item h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 2rem;
             color: var(--primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin: 0;
         }
 
         .hero-image img {
@@ -489,6 +501,8 @@
             cursor: pointer;
             transition: transform 0.3s;
             font-family: 'Cairo', sans-serif;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-btn:hover {
@@ -598,6 +612,9 @@
             font-weight: 700;
             margin: 20px 0;
             transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
         }
 
         .apk-download-btn:hover {
@@ -608,6 +625,24 @@
             font-size: 0.8rem;
             color: var(--gray);
             margin-top: 16px;
+        }
+
+        /* Browser suggestion badge */
+        .browser-suggestion {
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .browser-suggestion i {
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
@@ -680,15 +715,15 @@
                         <p>اعرض إعلانك على منصة PrimeCash واستهدف آلاف المستخدمين النشطين يومياً. خطط مرنة تناسب احتياجاتك التسويقية.</p>
                         <div class="hero-stats">
                             <div class="stat-item">
-                                <i class="fas fa-users" style="font-size: 2rem; color: var(--primary);"></i>
+                                <i class="fas fa-users"></i>
                                 <p>جمهور متفاعل</p>
                             </div>
                             <div class="stat-item">
-                                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--primary);"></i>
+                                <i class="fas fa-chart-line"></i>
                                 <p>نمو مستمر</p>
                             </div>
                             <div class="stat-item">
-                                <i class="fas fa-percent" style="font-size: 2rem; color: var(--primary);"></i>
+                                <i class="fas fa-percent"></i>
                                 <p>تفاعل حقيقي</p>
                             </div>
                         </div>
@@ -720,7 +755,7 @@
                             <li><i class="fas fa-bullhorn"></i> استهداف دقيق للفئة العمرية</li>
                         </ul>
                         <div class="plan-action">
-                            <button class="plan-btn secondary" data-plan="basic">اطلب الباقة  </button>
+                            <button class="plan-btn secondary" data-plan="basic">اطلب الباقة</button>
                         </div>
                     </div>
 
@@ -736,7 +771,7 @@
                             <li><i class="fas fa-envelope"></i> تقرير أسبوعي عن أداء الإعلان</li>
                         </ul>
                         <div class="plan-action">
-                            <button class="plan-btn primary" data-plan="pro">اطلب الباقة  </button>
+                            <button class="plan-btn primary" data-plan="pro">اطلب الباقة</button>
                         </div>
                     </div>
 
@@ -752,7 +787,7 @@
                             <li><i class="fas fa-headset"></i> دعم تسويقي مخصص</li>
                         </ul>
                         <div class="plan-action">
-                            <button class="plan-btn secondary" data-plan="premium">اطلب الباقة  </button>
+                            <button class="plan-btn secondary" data-plan="premium">اطلب الباقة</button>
                         </div>
                     </div>
                 </div>
@@ -789,7 +824,7 @@
             <div class="cta-section">
                 <h2>ابدأ حملتك الإعلانية الآن</h2>
                 <p>تواصل معنا عبر إنستغرام للحصول على عرض مخصص يناسب ميزانيتك وأهدافك</p>
-                <a href="https://www.instagram.com/rowwad.agency" target="_blank" rel="noopener noreferrer" class="cta-btn" style="display: inline-block; text-decoration: none;">
+                <a href="https://www.instagram.com/rowwad.agency" target="_blank" rel="noopener noreferrer" class="cta-btn">
                     <i class="fab fa-instagram"></i> راسلنا على إنستغرام
                 </a>
             </div>
@@ -822,33 +857,129 @@
     <div class="modal" id="downloadModal">
         <div class="modal-content">
             <div class="modal-close" id="closeModal"><i class="fas fa-times"></i></div>
-            <i class="fas fa-android" style="font-size: 3rem; color: var(--primary); margin-bottom: 16px;"></i>
+            <i class="fas fa-download" style="font-size: 3rem; color: var(--primary); margin-bottom: 16px;"></i>
             <h3 style="margin-bottom: 8px;">تحميل تطبيق PrimeCash</h3>
             <p style="margin-bottom: 20px;">نسخة APK للأندرويد - حمل التطبيق الآن</p>
-            <a href="#" id="apkDownloadLink" class="apk-download-btn" download>
+            <button id="apkDownloadBtn" class="apk-download-btn">
                 <i class="fas fa-download"></i> تحميل ملف APK
-            </a>
-            <p class="note-text">ملف التطبيق متاح للتحميل المباشر. يرجى تمكين التثبيت من مصادر غير معروفة في إعدادات جهازك.</p>
+            </button>
+            <!-- <div class="browser-suggestion">
+                <i class="fas fa-chrome"></i>
+                <span>يفضل التحميل عبر متصفح Chrome لضمان نجاح التثبيت</span>
+            </div> -->
+            <p class="note-text">ملف التطبيق متاح للتحميل المباشر.</p>
         </div>
     </div>
 
     <script>
         // رابط تحميل APK (ضع الرابط الحقيقي لملف APK هنا)
-        const APK_DOWNLOAD_URL = "https://example.com/primecash.apk"; // ⚠️ استبدل هذا الرابط بالرابط الحقيقي لملف APK
+        const APK_DOWNLOAD_URL = "public/prime-cash.apk";
         
         // Instagram direct profile link for all communications
         const INSTAGRAM_URL = "https://ig.me/m/rowwad.agency";
+        
+        // التحقق مما إذا كان المتصفح هو Chrome أو متصفح خارجي
+        function isInAppBrowser() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // الكشف عن متصفحات التطبيقات المدمجة (Instagram, Facebook, etc.)
+            const isInstagram = ua.includes('Instagram') || ua.includes('InstagramApp');
+            const isFacebook = ua.includes('FBAV') || ua.includes('FBAN');
+            const isTwitter = ua.includes('Twitter') || ua.includes('TwitterApp');
+            const isSnapchat = ua.includes('Snapchat');
+            const isWebView = /; wv\)/.test(ua) || /WebView/.test(ua);
+            
+            return isInstagram || isFacebook || isTwitter || isSnapchat || isWebView;
+        }
+        
+        // فتح رابط في متصفح خارجي
+        function openInExternalBrowser(url) {
+            if (isInAppBrowser()) {
+                // محاولة فتح الرابط في متصفح خارجي
+                // الطريقة: استخدام intent:// للأندرويد
+                if (/android/i.test(navigator.userAgent)) {
+                    // استخدام intent URI للأندرويد
+                    const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
+                    window.location.href = intentUrl;
+                    
+                    // إذا لم ينجح، جرب الطريقة البديلة
+                    setTimeout(() => {
+                        window.open(url, '_system');
+                    }, 100);
+                } else {
+                    // للأجهزة الأخرى
+                    window.open(url, '_system');
+                }
+            } else {
+                // إذا كان المتصفح أساسي، افتح الرابط مباشرة
+                window.open(url, '_blank');
+            }
+        }
+        
+        // دالة تحميل APK مع فتح المتصفح الخارجي إذا لزم الأمر
+        function downloadAPK() {
+            const apkUrl = APK_DOWNLOAD_URL;
+            
+            if (isInAppBrowser()) {
+                // إظهار رسالة للمستخدم
+                showToast('جاري فتح المتصفح لتحميل التطبيق...', 'info');
+                
+                // محاولة فتح الرابط في متصفح خارجي
+                if (/android/i.test(navigator.userAgent)) {
+                    // استخدام intent للأندرويد لفتح Chrome مباشرة
+                    const chromeIntent = `intent://${apkUrl.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end;`;
+                    window.location.href = chromeIntent;
+                    
+                    // بديل إذا لم ينجح الـ intent
+                    setTimeout(() => {
+                        window.open(apkUrl, '_system');
+                    }, 500);
+                } else {
+                    window.open(apkUrl, '_system');
+                }
+            } else {
+                // فتح التحميل مباشرة في نفس المتصفح
+                const link = document.createElement('a');
+                link.href = apkUrl;
+                link.download = 'prime-cash.apk';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showToast('بدء تحميل ملف APK...', 'success');
+            }
+        }
+        
+        // دالة عرض إشعار
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.right = '30px';
+            toast.style.backgroundColor = type === 'error' ? '#EF4444' : (type === 'info' ? '#F59E0B' : 'var(--primary)');
+            toast.style.color = 'white';
+            toast.style.padding = '16px 24px';
+            toast.style.borderRadius = '50px';
+            toast.style.fontWeight = '600';
+            toast.style.zIndex = '1000';
+            toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+            toast.style.direction = 'rtl';
+            toast.style.fontFamily = 'Cairo, sans-serif';
+            toast.innerHTML = `<i class="fas ${type === 'error' ? 'fa-exclamation-triangle' : (type === 'info' ? 'fa-info-circle' : 'fa-check-circle')}"></i> ${message}`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
         
         // Modal handling
         const modal = document.getElementById('downloadModal');
         const closeModal = document.getElementById('closeModal');
         const downloadBtns = document.querySelectorAll('#heroDownloadBtn, #navDownloadBtn');
-        const apkLink = document.getElementById('apkDownloadLink');
-        
-        // تعيين رابط APK
-        if(apkLink) {
-            apkLink.href = APK_DOWNLOAD_URL;
-        }
+        const apkDownloadBtn = document.getElementById('apkDownloadBtn');
         
         function openModal() {
             modal.classList.add('active');
@@ -861,6 +992,15 @@
         downloadBtns.forEach(btn => {
             btn.addEventListener('click', openModal);
         });
+        
+        // زر التحميل داخل المودال
+        if (apkDownloadBtn) {
+            apkDownloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadAPK();
+                closeModalFunc();
+            });
+        }
         
         closeModal.addEventListener('click', closeModalFunc);
         modal.addEventListener('click', (e) => {
@@ -877,30 +1017,17 @@
                 else if(plan === 'pro') planName = 'الباقة الاحترافية';
                 else planName = 'الباقة الماسية';
                 
-                // فتح رابط الإنستغرام مع رسالة مسبقة
-                const instagramUrl = `${INSTAGRAM_URL}?utm_source=primecash_landing&utm_medium=website&utm_campaign=${plan}`;
-                window.open(instagramUrl, '_blank');
+                // فتح رابط الإنستغرام
+                const instagramUrl = `https://ig.me/m/rowwad.agency?text=أهلاً، أرغب في الحصول على ${planName}`;
                 
-                // إشعار للمستخدم
-                const toast = document.createElement('div');
-                toast.style.position = 'fixed';
-                toast.style.bottom = '30px';
-                toast.style.right = '30px';
-                toast.style.backgroundColor = 'var(--primary)';
-                toast.style.color = 'white';
-                toast.style.padding = '16px 24px';
-                toast.style.borderRadius = '50px';
-                toast.style.fontWeight = '600';
-                toast.style.zIndex = '1000';
-                toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
-                toast.style.direction = 'rtl';
-                toast.innerHTML = `<i class="fab fa-instagram"></i> سيتم فتح إنستغرام للتواصل مع فريق المبيعات`;
-                document.body.appendChild(toast);
+                if (isInAppBrowser()) {
+                    // إذا كان داخل إنستغرام، نحتاج لفتح الرابط بطريقة مختلفة
+                    window.open(instagramUrl, '_system');
+                } else {
+                    window.open(instagramUrl, '_blank');
+                }
                 
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    setTimeout(() => toast.remove(), 500);
-                }, 3000);
+                showToast(`سيتم فتح إنستغرام للتواصل بخصوص ${planName}`, 'info');
             });
         });
         
